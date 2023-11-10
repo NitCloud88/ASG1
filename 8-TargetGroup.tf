@@ -1,4 +1,4 @@
-resource "aws_lb_target_group" "app1_tg" {
+resource "aws_lb_target_group" "app5_tg" {
   name     = "app5-target-group"
   port     = 80
   protocol = "HTTP"
