@@ -1,20 +1,20 @@
-resource "aws_autoscaling_group" "app1_asg" {
-  name_prefix           = "app1-auto-scaling-group-"
+resource "aws_autoscaling_group" "app5_asg" {
+  name_prefix           = "app5-auto-scaling-group-"
   min_size              = 3
   max_size              = 15
   desired_capacity      = 6
   vpc_zone_identifier   = [
-    aws_subnet.private-eu-west-1a.id,
-    aws_subnet.private-eu-west-1b.id,
-    aws_subnet.private-eu-west-1c.id
+    aws_subnet.private-sa-east-1a.id,
+    aws_subnet.private-sa-east-1b.id,
+    aws_subnet.private-sa-east-1c.id
   ]
   health_check_type          = "ELB"
   health_check_grace_period  = 300
   force_delete               = true
-  target_group_arns          = [aws_lb_target_group.app1_tg.arn]
+  target_group_arns          = [aws_lb_target_group.app5_tg.arn]
 
   launch_template {
-    id      = aws_launch_template.app1_LT.id
+    id      = aws_launch_template.app5_LT.id
     version = "$Latest"
   }
 
@@ -39,7 +39,7 @@ resource "aws_autoscaling_group" "app1_asg" {
 
   tag {
     key                 = "Name"
-    value               = "app1-instance"
+    value               = "app5-instance"
     propagate_at_launch = true
   }
 
@@ -52,9 +52,9 @@ resource "aws_autoscaling_group" "app1_asg" {
 
 
 # Auto Scaling Policy
-resource "aws_autoscaling_policy" "app1_scaling_policy" {
-  name                   = "app1-cpu-target"
-  autoscaling_group_name = aws_autoscaling_group.app1_asg.name
+resource "aws_autoscaling_policy" "app5_scaling_policy" {
+  name                   = "app5-cpu-target"
+  autoscaling_group_name = aws_autoscaling_group.app5_asg.name
 
   policy_type = "TargetTrackingScaling"
   estimated_instance_warmup = 120
@@ -68,7 +68,7 @@ resource "aws_autoscaling_policy" "app1_scaling_policy" {
 }
 
 # Enabling instance scale-in protection
-resource "aws_autoscaling_attachment" "app1_asg_attachment" {
-  autoscaling_group_name = aws_autoscaling_group.app1_asg.name
-  alb_target_group_arn   = aws_lb_target_group.app1_tg.arn
+resource "aws_autoscaling_attachment" "app5_asg_attachment" {
+  autoscaling_group_name = aws_autoscaling_group.app5_asg.name
+  alb_target_group_arn   = aws_lb_target_group.app5_tg.arn
 }
