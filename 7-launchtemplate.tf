@@ -1,11 +1,11 @@
-resource "aws_launch_template" "app1_LT" {
-  name_prefix   = "app1_LT"
+resource "aws_launch_template" "app5_LT" {
+  name_prefix   = "app5_LT"
   image_id      = "ami-06ed60ed1369448bd"  
   instance_type = "t2.micro"
 
   key_name = "MyLinuxBox"
 
-  vpc_security_group_ids = [aws_security_group.app1-sg01-servers.id]
+  vpc_security_group_ids = [aws_security_group.app5-sg01-servers.id]
 
   user_data = base64encode(<<-EOF
     #!/bin/bash
@@ -37,8 +37,8 @@ resource "aws_launch_template" "app1_LT" {
     </head>
     <body>
     <div>
-    <h1>Malgus Clan</h1>
-    <h1>Chains Broken in Ireland</h1>
+    <h1>Bem vindo ao Brasil</h1>
+    <h1>A terra dos bagres e das concubinas</h1>
     <p><b>Instance Name:</b> $(hostname -f) </p>
     <p><b>Instance Private Ip Address: </b> $local_ipv4</p>
     <p><b>Availability Zone: </b> $az</p>
@@ -56,10 +56,10 @@ resource "aws_launch_template" "app1_LT" {
   tag_specifications {
     resource_type = "instance"
     tags = {
-      Name    = "app1_LT"
-      Service = "application1"
-      Owner   = "Chewbacca"
-      Planet  = "Mustafar"
+      Name    = "app5_LT"
+      Service = "application5"
+      Owner   = "Kings"
+      Planet  = "Success"
     }
   }
 
