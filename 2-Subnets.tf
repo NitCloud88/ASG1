@@ -3,7 +3,7 @@
 resource "aws_subnet" "public-sa-east-1a" {
   vpc_id                  = aws_vpc.app5.id
   cidr_block              = "10.73.1.0/24"
-  availability_zone       = "sa-east-1"
+  availability_zone       = "sa-east-1a"
   map_public_ip_on_launch = true
 
   tags = {
