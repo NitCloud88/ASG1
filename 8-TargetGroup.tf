@@ -1,8 +1,8 @@
 resource "aws_lb_target_group" "app1_tg" {
-  name     = "app1-target-group"
+  name     = "app5-target-group"
   port     = 80
   protocol = "HTTP"
-  vpc_id   = aws_vpc.app1.id
+  vpc_id   = aws_vpc.app5.id
   target_type = "instance"
 
   health_check {
@@ -17,8 +17,8 @@ resource "aws_lb_target_group" "app1_tg" {
   }
 
   tags = {
-    Name    = "App1TargetGroup"
-    Service = "App1"
+    Name    = "App5TargetGroup"
+    Service = "App5"
     Owner   = "User"
     Project = "Web Service"
   }
