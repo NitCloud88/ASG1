@@ -11,7 +11,7 @@ resource "aws_lb" "app5_alb" {
   enable_deletion_protection = false
 
   tags = {
-    Name    = "App1LoadBalancer"
+    Name    = "App5LoadBalancer"
     Service = "App5"
     Owner   = "User"
     Project = "Web Service"
